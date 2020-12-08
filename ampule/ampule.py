@@ -7,10 +7,10 @@ class Ampule:
         self.py_path = py_path.replace(' ', '\ ')
         self.dep_path = dep_path.replace(' ', '\ ')
         self.pdf_path = pdf_path.replace(' ', '\ ')
-        self.dat_paths = []
+        self.dat_paths = set()
 
     def load(self, dat_path):
-        self.dat_paths.append(dat_path.replace(' ', '\ '))
+        self.dat_paths.update([dat_path.replace(' ', '\ ')])
         with open(dat_path) as f:
             names = f.readline()[2:].split()
             raw_columns = zip(*(map(float, line.split()) for line in f))
