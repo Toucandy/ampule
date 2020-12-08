@@ -1,5 +1,5 @@
 import os
-from collections import namedtuple
+from pandas import DataFrame
 import glob
 
 class Ampule:
@@ -12,12 +12,9 @@ class Ampule:
     def load(self, dat_path):
         self.dat_paths.append(dat_path.replace(' ', '\ '))
         with open(dat_path) as f:
-            names = f.readline()[2:]
+            names = f.readline()[2:].split()
             raw_columns = zip(*(map(float, line.split()) for line in f))
-            columns = namedtuple('columns', names)
-            ret = columns(*raw_columns)
-
-            return ret
+            return DataFrame({name: col for name, col in zip(names, raw_columns)})
 
     def __del__(self):
         with open(self.dep_path, 'w') as deps:
