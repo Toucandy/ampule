@@ -19,7 +19,7 @@ class Ampule:
     def __del__(self):
         with open(self.dep_path, 'w') as deps:
             print(self.pdf_path + ":", self.py_path, end = ' ', file = deps)
-            for dat_path in self.dat_paths:
+            for dat_path in sorted(list(self.dat_paths)):
                 print(dat_path, end = ' ', file = deps)
             print(file = deps)
             print(file = deps)
