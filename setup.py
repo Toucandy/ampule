@@ -8,4 +8,5 @@ setup(
    author_email='pershin2010@gmail.com',
    packages = ['ampule'],
    install_requires = ['pandas'],
+   data_files=[('build', ['build/ampule_plot.mk', 'build/ampule_config.mk'])]
 )
