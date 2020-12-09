@@ -16,14 +16,21 @@ class Ampule:
             raw_columns = zip(*(map(float, line.split()) for line in f))
             return DataFrame({name: col for name, col in zip(names, raw_columns)})
 
+    def full_path(self, path):
+        filename = self.pdf_path + path
+        if not os.path.exists(os.path.dirname(filename)):
+            os.makedirs(os.path.dirname(filename))
+        return filename
+
     def __del__(self):
         with open(self.dep_path, 'w') as deps:
             print(self.pdf_path + ":", self.py_path, end = ' ', file = deps)
-            for dat_path in sorted(list(self.dat_paths)):
+            dat_paths = sorted(list(self.dat_paths))
+            for dat_path in dat_paths:
                 print(dat_path, end = ' ', file = deps)
             print(file = deps)
             print(file = deps)
-            for dat_path in self.dat_paths:
+            for dat_path in dat_paths:
                 print(dat_path + ":", file = deps)
                 print(file = deps)
 
