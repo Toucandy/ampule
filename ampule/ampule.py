@@ -22,7 +22,7 @@ class Ampule:
             os.makedirs(os.path.dirname(filename))
         return filename
 
-    def __del__(self):
+    def flush_deps(self):
         with open(self.dep_path, 'w') as deps:
             print(self.pdf_path + ":", self.py_path, end = ' ', file = deps)
             dat_paths = sorted(list(self.dat_paths))
