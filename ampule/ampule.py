@@ -1,6 +1,12 @@
 import os
 from pandas import DataFrame
+from parse import parse
+from itertools import chain
 import glob
+
+class AttrDict(dict):
+    __getattr__ = dict.__getitem__
+    __setattr__ = dict.__setitem__
 
 class Ampule:
     def __init__(self, py_path, dep_path, pdf_path):
@@ -12,9 +18,15 @@ class Ampule:
     def load(self, dat_path):
         self.dat_paths.update([dat_path.replace(' ', '\ ')])
         with open(dat_path) as f:
-            names = f.readline()[2:].split()
-            raw_columns = zip(*(map(float, line.split()) for line in f))
-            return DataFrame({name: col for name, col in zip(names, raw_columns)})
+            meta = AttrDict()
+            while (hline := f.readline()).startswith('#:'):
+                if (p := parse("{}={}", hline[2:])):
+                    name, val = p
+                    meta[name] = eval(val)
+                else:
+                    names = hline[2:].split()
+            raw_columns = zip(*(map(float, line.split()) for line in chain([hline], f)))
+            return DataFrame({name: col for name, col in zip(names, raw_columns)}), meta
 
     def full_path(self, path):
         filename = self.pdf_path + path
