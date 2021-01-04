@@ -34,7 +34,7 @@ class Ampule:
             os.makedirs(os.path.dirname(filename))
 
         kwargs.setdefault('metadata', {}).update({'CreationDate': None})
-        plt.savefig(filename, kwargs)
+        plt.savefig(filename, **kwargs)
 
     def flush_deps(self):
         with open(self.dep_path, 'w') as deps:
