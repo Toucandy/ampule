@@ -29,7 +29,7 @@ class Ampule:
             return DataFrame({name: col for name, col in zip(names, raw_columns)}), meta
 
     def savefig(self, plt, path, **kwargs):
-        filename = self.pdf_path + path
+        filename = f'{self.pdf_path}/{path}'
         if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
 

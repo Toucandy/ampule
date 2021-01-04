@@ -11,7 +11,7 @@ setup(
    author = 'Ilya Pershin',
    author_email='pershin2010@gmail.com',
    install_requires = ['matplotlib', 'pandas', 'parse'],
-   data_files=[('ampule', ['ampule_plot.mk', 'ampule_config.mk'])],
+   data_files=[('ampule', ['Makefile', 'ampule_config.mk'])],
    keywords = ['matplotlib', 'plotting', 'pandas'],
    classifiers=[
      'Development Status :: 4 - Beta',
