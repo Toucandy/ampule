@@ -28,11 +28,13 @@ class Ampule:
             raw_columns = zip(*(map(float, line.split()) for line in chain([hline], f)))
             return DataFrame({name: col for name, col in zip(names, raw_columns)}), meta
 
-    def full_path(self, path):
+    def savefig(self, plt, path, **kwargs):
         filename = self.pdf_path + path
         if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
-        return filename
+
+        kwargs.setdefault('metadata', {}).update({'CreationDate': None})
+        plt.savefig(filename, kwargs)
 
     def flush_deps(self):
         with open(self.dep_path, 'w') as deps:
