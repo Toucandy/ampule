@@ -1,12 +1,12 @@
 Ampule (Automated MatPlotLib) is a minimalistic tool designed for repeated 
 non-interactive processing and plotting of tabular data
 
-##Prerequisites
+## Prerequisites
 
 You need a Linux distribution, python3 installed, and knowledge (or desire to 
 learn) of Matplotlib library.
 
-##Features
+## Features
 
 ####Easy import, post-processing and plotting of tabular data
 
@@ -78,7 +78,7 @@ names. The work with metadata is straightforward
     data, meta = ampule.load('dat/data.dat')
     print(meta.foo, meta.bar)
 
-##Getting started
+## Getting started
 
 ####Install the package from PyPI
 
