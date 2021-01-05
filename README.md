@@ -8,7 +8,7 @@ learn) of Matplotlib library.
 
 ## Features
 
-####Easy import, post-processing and plotting of tabular data
+#### Easy import, post-processing and plotting of tabular data
 
 Data are to be stored on disk in the following DSV-like format
 
@@ -35,7 +35,7 @@ just pass the columns to the plotter
     plt.plot(data.x, data.f, label = r'$f(x)$')
     plt.plot(data.x, data.g, label = r'$g(x)$')
 
-####Makefile for mass (re)building of output plots
+#### Makefile for mass (re)building of output plots
 
 Let's say you have written a script for data plotting, and want to update the 
 picture after receving fresh data. Or you decided to prettify your plot and 
@@ -47,7 +47,7 @@ Ampule will automatically rebuild those and only those pictures for which the
 data or plotting script have changed. For this to work, special dependency 
 files are stored (similar to ones producing by `gcc -MT`)
 
-####Import by mask
+#### Import by mask
 
 When you have a lot of data files, you may start giving them parametric names, 
 like `H_0.dat`, `H_1.dat`, `H_2.dat` ...
@@ -57,7 +57,7 @@ Say no more
         data, _ = ampule.load(path)
         plt.plot(data.x, data.H, label = rf'$H_{k}$')
 
-####Reproducible plots
+#### Reproducible plots
 
 Sometimes it is needed for the pictures do not change if they are plotted on 
 the same data, especially if you decide to store pictures under version 
@@ -65,7 +65,7 @@ control system.  This behavior is supported and enabled by default. If you
 refactor the script without changing its essence, the pictures will not change 
 either.
 
-####Metadata support
+#### Metadata support
 
 In addition, you can store some meta-information as follows:
 
@@ -80,11 +80,11 @@ names. The work with metadata is straightforward
 
 ## Getting started
 
-####Install the package from PyPI
+#### Install the package from PyPI
 
     pip3 install ampule 
 
-####Get the build files
+#### Get the build files
 
     mkdir try_ampule
     cd try_ampule
@@ -98,7 +98,7 @@ Makefile content.
 
 The `ampule_config.mk` contains some paths that you may want to vary later.
 
-####Get the test data and test scripts
+#### Get the test data and test scripts
 This is step is optional for experienced users, but highly recommended when 
 first trying of Ampule.
 
@@ -110,7 +110,7 @@ If the last command completed without errors, then you have just successfully
 installed and configured ampule! Check the `figs/pdf` directory to see the 
 results of plotting.
 
-####Explore ampule
+#### Explore ampule
 
 Read the scripts in `figs/py` and understand how they work. This shouldn't be 
 difficult, unless this is your first time seeing a Python code. Feel free to 
