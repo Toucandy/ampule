@@ -11,6 +11,7 @@ data, _ = ampule.load(f'dat/poly.dat')
 plt.plot(data.x, data.f, label = r'$f(x)$')
 plt.plot(data.x, data.g, label = r'$g(x)$')
 plt.plot(data.x, data.h, label = r'$h(x)$')
+plt.plot(data.x, data.f + data.g/2 + data.h/6, label = r'$(f + g/2 + h/6)(x)$')
 
 plt.xlabel(r'$x$')
 plt.ylabel(r'$y$')
