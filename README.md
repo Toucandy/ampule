@@ -78,4 +78,43 @@ names. The work with metadata is straightforward
     data, meta = ampule.load('dat/data.dat')
     print(meta.foo, meta.bar)
 
-##Get started
+##Getting started
+
+####Install the package from PyPI
+
+    pip3 install ampule 
+
+####Get the build files
+
+    mkdir try_ampule
+    cd try_ampule
+    ln -s ~/.local/ampule/Makefile Makefile
+    cp ~/.local/ampule/ampule_config.mk ampule_config.mk
+
+Symbolic link for the Makefile is preferable, since it automatically updates 
+the Makefile when the package is updated. However, if later you will need to 
+embed the plotting in your own Makefile, you may want to just copy the Ampule
+Makefile content.
+
+The `ampule_config.mk` contains some paths that you may want to vary later.
+
+####Get the test data and test scripts
+This is step is optional for experienced users, but highly recommended when 
+first trying of Ampule.
+
+    cp -r ~/.local/ampule/figs figs
+    cp -r ~/.local/ampule/dat dat
+    make
+
+If the last command completed without errors, then you have just successfully 
+installed and configured ampule! Check the `figs/pdf` directory to see the 
+results of plotting.
+
+####Explore ampule
+
+Read the scripts in `figs/py` and understand how they work. This shouldn't be 
+difficult, unless this is your first time seeing a Python code. Feel free to 
+mess with scripts and data files to get used to Ampule. When you are ready, 
+create your own script and delete the test ones. You may also find the `make 
+clean` command useful, which clears the working directory from pictures and 
+dependency files.
