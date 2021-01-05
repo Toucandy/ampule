@@ -4,7 +4,8 @@ setup(
    name = 'ampule',
    packages = ['ampule'],
    version = '0.9',
-   description='Ampule (Automated MatPlotLib) -- serial non-interactive processing and plotting of tabular data',
+   description='Ampule (Automated MatPlotLib) is a minimalistic tool designed for repeated
+non-interactive processing and plotting of tabular data',
    #url = 'https://github.com/Toucandy/ampule',
    #download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',
    license='MIT',
