@@ -53,8 +53,12 @@ def search_mask(pref, suff = None, cls = int, key_ordering = lambda x: x):
 def dat_parser(path):
     with open(path) as f:
         meta = AttrDict()
-        while (hline := f.readline()).startswith('#:'):
-            if (p := parse("{}={}", hline[2:])):
+        while True:
+            hline = f.readline()
+            if not hline.startswith('#:'):
+                break
+            p = parse("{}={}", hline[2:])
+            if p:
                 name, val = p
                 meta[name] = eval(val)
             else:
