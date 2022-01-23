@@ -2,12 +2,12 @@ import matplotlib
 matplotlib.use('PDF')
 import matplotlib.pyplot as plt
 import sys
-from ampule import Ampule, search_mask
+from ampule import Ampule, search_mask, dat_parser
 
 #This command must be at the beginning of every Ampule script
 ampule = Ampule(*sys.argv)
 
-data, _ = ampule.load(f'dat/poly.dat')
+data, _ = ampule.load(dat_parser, f'dat/poly.dat')
 
 plt.plot(data.x, data.f, label = r'$f(x)$')
 plt.plot(data.x, data.g, label = r'$g(x)$')
@@ -24,9 +24,9 @@ plt.grid()
 plt.legend()
 plt.title('Linear scale')
 
-#Simple wrapper for plt.savefig(), removing the embedding of the date in the output files
-#as well as creating some necessary paths
-ampule.savefig(plt, 'linear')
+#Simple wrapper for matplotlib save functions (pyplot.savefig, animation.FuncAnimation.save, ...)
+#Removing the embedding of the date in the output files as well as creating some necessary paths
+ampule.save(plt.savefig, 'linear')
 plt.clf()
 
 #You are not limited to one picture per script. Let's create another
@@ -43,7 +43,7 @@ plt.grid()
 plt.legend()
 plt.title('Logarithmic scale')
 
-ampule.savefig(plt, 'loglog')
+ampule.save(plt.savefig, 'loglog')
 plt.clf()
 
 ###############################################################################

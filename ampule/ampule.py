@@ -15,18 +15,9 @@ class Ampule:
         self.pdf_path = pdf_path.replace(' ', '\ ')
         self.dat_paths = set()
 
-    def load(self, dat_path):
-        self.dat_paths.update([dat_path.replace(' ', '\ ')])
-        with open(dat_path) as f:
-            meta = AttrDict()
-            while (hline := f.readline()).startswith('#:'):
-                if (p := parse("{}={}", hline[2:])):
-                    name, val = p
-                    meta[name] = eval(val)
-                else:
-                    names = hline[2:].split()
-            raw_columns = zip(*(map(float, line.split()) for line in chain([hline], f)))
-            return DataFrame({name: col for name, col in zip(names, raw_columns)}), meta
+    def load(self, parser, path):
+        self.dat_paths.update([path.replace(' ', '\ ')])
+        return parser(path)
 
     def save(self, save_func, path, **kwargs):
         filename = f'{self.pdf_path}/{path}'
@@ -58,3 +49,15 @@ def search_mask(pref, suff = None, cls = int, key_ordering = lambda x: x):
         mask = pref + '*' + suff
         sl = slice(len(pref), -len(suff))
     return sorted(((p, cls(p[sl])) for p in glob.glob(mask)), key = lambda x: key_ordering(x[1]))
+
+def dat_parser(path):
+    with open(path) as f:
+        meta = AttrDict()
+        while (hline := f.readline()).startswith('#:'):
+            if (p := parse("{}={}", hline[2:])):
+                name, val = p
+                meta[name] = eval(val)
+            else:
+                names = hline[2:].split()
+        raw_columns = zip(*(map(float, line.split()) for line in chain([hline], f)))
+        return DataFrame({name: col for name, col in zip(names, raw_columns)}), meta
