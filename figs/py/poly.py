@@ -7,7 +7,7 @@ from ampule import Ampule, search_mask, dat_parser
 #This command must be at the beginning of every Ampule script
 ampule = Ampule(*sys.argv)
 
-data, _ = ampule.load(dat_parser, f'dat/poly.dat')
+data, _ = ampule.load(dat_parser, 'dat/poly.dat')
 
 plt.plot(data.x, data.f, label = r'$f(x)$')
 plt.plot(data.x, data.g, label = r'$g(x)$')
