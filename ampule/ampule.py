@@ -41,14 +41,14 @@ class Ampule:
                 print(dat_path + ":", file = deps)
                 print(file = deps)
 
-def search_mask(pref, suff = None, cls = int, key_ordering = lambda x: x):
+def search_mask(pref, suff = None, cls = int, key_ordering = lambda x: x, reverse = False):
     if not suff:
         mask = pref + '*'
         sl = slice(len(pref), None)
     else:
         mask = pref + '*' + suff
         sl = slice(len(pref), -len(suff))
-    return sorted(((p, cls(p[sl])) for p in glob.glob(mask)), key = lambda x: key_ordering(x[1]))
+    return sorted(((p, cls(p[sl])) for p in glob.glob(mask)), reverse = reverse, key = lambda x: key_ordering(x[1]))
 
 def dat_parser(path):
     with open(path) as f:
